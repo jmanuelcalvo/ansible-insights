@@ -2,6 +2,7 @@ El objetivo de este pagina es mostrar el paso a paso para realizar la integraci�
 
 Para ello es necesario realizar los siguientes pasos:
 
+## Registrar las servidores a Red Hat Insights
 
 1.  Suscribir maquina con su usuario y contraseña de Red Hat a traves del comando subscription-manager
 ```bash
@@ -97,3 +98,30 @@ https://cloud.redhat.com/insights/inventory/1616ef27-d477-40ae-9c4e-xxxxx
     debug:
       var: salida  
 ```
+
+## Registrar los nodos en Ansible Tower
+
+
+1. Registrar el usuario y contraseña utilizados en Red Hat Insights dentro del Ansible Tower, para ello desde la interface de Ansible Tower ir a:
+
+Credentials -> Adicionar credenciales (+)
+
+En el campo **Tipo de credencial**, ingrese Insights o haga clic en el botón y selecciónelo en la ventana emergente del tipo de credencial.
+
+![Ref](img/tower-creds.png)
+
+y rellene los campos con los mismos datos de Registro de la maquinas y los del portal **Red Hat Customer Portal**
+
+Haga clic en **Save** cuando termine
+
+
+2. Crear un proyecto de integración con Red Hat Insights, desde la interface de Ansible Tower ir a:
+
+Projects -> Adicionar proyecto (+)
+
+El campo **Credential** se rellena previamente con las credenciales de Insights que creó anteriormente. De lo contrario, ingrese la credencial o haga clic en el botón y selecciónelo en la ventana emergente.
+
+![Ref](img/tower-project.png)
+
+Haga clic en **Save** cuando termine
+
