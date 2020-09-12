@@ -104,7 +104,7 @@ https://cloud.redhat.com/insights/inventory/1616ef27-d477-40ae-9c4e-xxxxx
 
 1. Registrar el usuario y contraseña utilizados en Red Hat Insights dentro del Ansible Tower, para ello desde la interface de Ansible Tower ir a:
 
-Credentials -> Adicionar credenciales (+)
+Credentials -> Adicionar credenciales  ![plus](img/green_plus.png)
 
 En el campo **Tipo de credencial**, ingrese Insights o haga clic en el botón y selecciónelo en la ventana emergente del tipo de credencial.
 
@@ -117,7 +117,7 @@ Haga clic en **Save** cuando termine
 
 2. Crear un proyecto de integración con Red Hat Insights, desde la interface de Ansible Tower ir a:
 
-Projects -> Adicionar proyecto (+)
+Projects -> Adicionar proyecto ![plus](img/green_plus.png)
 
 El campo **Credential** se rellena previamente con las credenciales de Insights que creó anteriormente. De lo contrario, ingrese la credencial o haga clic en el botón y selecciónelo en la ventana emergente.
 
@@ -135,7 +135,7 @@ Una vez creado el proyecto, este intentara sincronizar con los playbooks que se 
 
 3. Crear un inventario con los hosts ingresados a Red Hat Insights para la integración, desde la interface de Ansible Tower ir a:
 
-Inventories -> (+) -> Inventory
+Inventories -> ![plus](img/green_plus.png) -> Inventory
 
 
 ![Ref](img/tower-inventory.png)
@@ -144,7 +144,7 @@ Haga clic en **Save** cuando termine
 
 Una vez creado el inventario, se deben vincular los hosts previamente registrados, dentro del inventario vaya a :
 
-Hosts -> (+)
+Hosts -> ![plus](img/green_plus.png)
 
 ![Ref](img/tower-inventory1.png)
 
@@ -154,7 +154,7 @@ Haga clic en **Save** cuando termine
 
 Para que Ansible Tower pueda utilizar los planes de mantenimiento de Insights, debe tener visibilidad para ellos. Cree y ejecute un job/trabajo de escaneo en el inventario utilizando un playbook de escaneo manual, desde la interface de Ansible Tower ir a:
 
-Projects -> (+) -> Inventory
+Projects -> ![plus](img/green_plus.png) -> Inventory
 
 Puede utilizar este repositorio de git que contiene los playbooks de escaneo.
 
@@ -169,7 +169,7 @@ Haga clic en **Save** cuando termine
 
 Desde la interface de Ansible Tower ir a:
 
-Templates -> (+) -> Job Template
+Templates -> ![plus](img/green_plus.png) -> Job Template
 
 ![Ref](img/tower-template1.png)
 
@@ -180,8 +180,12 @@ Templates -> (+) -> Job Template
 
 - Credential: Estas credenciales deben coincidir con las de los sistemas operativos del inventario de Insights. Las credencial no tiene que ser una credencial de Insights, deben ser de maquinas **tipo machine**.
 
-* Haga clic para seleccionar Habilitar ** Enable Privilege Escalation**  y **Enable Fact Cache** en el campo Opciones.
+* Haga clic para seleccionar Habilitar **Enable Privilege Escalation**  y **Enable Fact Cache** en el campo Opciones.
+
+Haga clic en **Save** cuando termine
+
 
 > NOTA:
 >
-> Lo que hace es activar el botón ** Insights**  del Host, que es necesario para corregir el inventario de Insights. De lo contrario, el parámetro system_id en el resultado de su trabajo de escaneo se establece en nulo y el botón Insights no aparecerá.
+> Lo que hace es activar el botón **Insights**  del Host, que es necesario para corregir el inventario de Insights. De lo contrario, el parámetro system_id en el resultado de su trabajo de escaneo se establece en nulo y el botón Insights no aparecerá.
+
