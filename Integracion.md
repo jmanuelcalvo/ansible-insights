@@ -125,3 +125,63 @@ El campo **Credential** se rellena previamente con las credenciales de Insights 
 
 Haga clic en **Save** cuando termine
 
+Una vez creado el proyecto, este intentara sincronizar con los playbooks que se tengan creados en el portal cloud.redhat.com
+
+> NOTA:
+>
+> Puede suceder que la primera sincronización falle por timeout, intente nuevamente sincronizar de forma manual luego de 5 minutos
+
+![Ref](img/tower-project1.png)
+
+3. Crear un inventario con los hosts ingresados a Red Hat Insights para la integración, desde la interface de Ansible Tower ir a:
+
+Inventories -> (+) -> Inventory
+
+
+![Ref](img/tower-inventory.png)
+
+Haga clic en **Save** cuando termine
+
+Una vez creado el inventario, se deben vincular los hosts previamente registrados, dentro del inventario vaya a :
+
+Hosts -> (+)
+
+![Ref](img/tower-inventory1.png)
+
+Haga clic en **Save** cuando termine
+
+4. Creación de un proyecto adicional de escaneo
+
+Para que Ansible Tower pueda utilizar los planes de mantenimiento de Insights, debe tener visibilidad para ellos. Cree y ejecute un job/trabajo de escaneo en el inventario utilizando un playbook de escaneo manual, desde la interface de Ansible Tower ir a:
+
+Projects -> (+) -> Inventory
+
+Puede utilizar este repositorio de git que contiene los playbooks de escaneo.
+
+https://github.com/ansible/awx-facts-playbooks
+
+![Ref](img/tower-project2.png)
+
+
+Haga clic en **Save** cuando termine
+
+5. Crear un Trabajo/Job de escaneo/integración para habilitar el botón de Insights en los Hosts
+
+Desde la interface de Ansible Tower ir a:
+
+Templates -> (+) -> Job Template
+
+![Ref](img/tower-template1.png)
+
+
+- Job Type: Seleccionar **Run** 
+
+- Playbook: Seleccione scan_facts.yml
+
+- Credential: Estas credenciales deben coincidir con las de los sistemas operativos del inventario de Insights. Las credencial no tiene que ser una credencial de Insights, deben ser de maquinas **tipo machine**.
+
+* Haga clic para seleccionar Habilitar ** Enable Privilege Escalation**  y **Enable Fact Cache** en el campo Opciones.
+
+> NOTA:
+>
+> Lo que hace es activar el botón ** Insights**  del Host, que es necesario para corregir el inventario de Insights. De lo contrario, el parámetro system_id en el resultado de su trabajo de escaneo se establece en nulo y el botón Insights no aparecerá.
