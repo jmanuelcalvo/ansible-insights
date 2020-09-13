@@ -26,7 +26,7 @@ Vamos a iniciar realizando los siguientes pasos:
 
 ## Registrar las servidores a Red Hat Insights
 
-1.  Suscribir maquina con su usuario y contraseña de Red Hat a traves del comando subscription-manager
+1.  Suscribir maquina con su usuario y contraseña de Red Hat a través del comando subscription-manager
 ```bash
 [root@node01 ~]# subscription-manager register
 Registering to: subscription.rhsm.redhat.com:443/subscription
@@ -319,7 +319,7 @@ Vulnerability -> CVEs
 
 ![plus](img/insights-vulne.png) 
 
-Desde aquí podrá visualizar las vulnerabilidades que afectan a sus sistemas, asi como sus CVE's (Common Vulnerabilities and Exposures) o Vulnerabilidades y exposiciones comunes que afectan a sus sistemas con su respectivo ID y link donde se puede visualizar mayor informacion, su dato de publicacion, su nivel de severidad, su puntuacion, a cuantos de sus sistemas los afecta.
+Desde aqui podrá visualizar las vulnerabilidades que afectan a sus sistemas, asi como sus CVE's (Common Vulnerabilities and Exposures) o Vulnerabilidades y exposiciones comunes que afectan a sus sistemas con su respectivo ID y link donde se puede visualizar mayor información, su dato de publicación, su nivel de severidad, su puntuación, a cuantos de sus sistemas los afecta.
 
 También es posible encontrar un resumen con los servidores por los cuales son afectados estas vulnerabilidades
 
@@ -371,7 +371,7 @@ Y teniendo en cuenta que se aplicaron todas las remediaciones a la maquina, dent
 
 y en la información del sistema se puede observar que no hay CVE's aplicables
 
-Tambien se puede visualizar desde la inteface web de Ansible Tower que no hay remediaciones disponibles.
+También se puede visualizar desde la inteface web de Ansible Tower que no hay remediaciones disponibles.
 
 INVENTORIES -> Insights Inventory -> HOSTS -> node ->  INSIGHTS
 
@@ -389,13 +389,13 @@ El servicio de Cumplimiento le permite evaluar y monitorear el cumplimiento de s
 
 > El Security Content Automation Protocol, también conocido por sus siglas SCAP o S'CAP, es conjunto de especificaciones del NIST para expresar (formatos y nomenclaturas) y manipular información relacionada con la seguridad sobre fallos y configuraciones, de una forma estandarizada.
 
-Desde aquí  podra crear, configurar y administrar sus políticas de seguridad de SCAP directamente dentro del servicio de compliance. Con las funciones de filtrado y adición de contexto integradas en el servicio, puede identificar y administrar fácilmente los problemas de cumplimiento minimas de sus maquinas.
+Desde aquí  podrá crear, configurar y administrar sus políticas de seguridad de SCAP directamente dentro del servicio de compliance. Con las funciones de filtrado y adición de contexto integradas en el servicio, puede identificar y administrar fácilmente los problemas de cumplimiento mínimas de sus maquinas.
 
-El primer paso que debemos realizar es identificar la politica de seguridad que se va a utilizar y crear una nueva politica basada en la misma, para ello damos click en el boton **Create new policy**:
+El primer paso que debemos realizar es identificar la política de seguridad que se va a utilizar y crear una nueva política basada en la misma, para ello damos click en el botón **Create new policy**:
 
 ![plus](img/insights-comp1.png) 
 
-Seleccionamos la version del sistema operativo para los cuales se va crear la politica, estos pueden ser RHEL6, RHEL7 o RHEL8 y se desplegara una lista de las politias que podemos aplicar al sistema operativo:
+Seleccionamos la versión del sistema operativo para los cuales se va crear la política, estos pueden ser RHEL6, RHEL7 o RHEL8 y se desplegara una lista de las politias que podemos aplicar al sistema operativo:
 
 
 * [Health Insurance Portability and Accountability Act (HIPAA)](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-hipaa.html)
@@ -416,38 +416,38 @@ Seleccionamos la version del sistema operativo para los cuales se va crear la po
 * [Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-rht-ccp.html)
 * [Australian Cyber Security Centre (ACSC) Essential Eight](https://static.open-scap.org/ssg-guides/ssg-rhel8-guide-index.html)
 
-Un vez seleccionada la politica click en **Next** 
+Un vez seleccionada la política click en **Next** 
 
 ![plus](img/insights-comp2.png) 
 
-Aqui se puede adicionar comentarios respecto a la politica que se va a aplicar, definir el objetivo de uso de esta politica y un porcentaje que en la medida que se cumpla las maquinas se declararan en cumplimiento o no.
+Aqui se puede adicionar comentarios respecto a la política que se va a aplicar, definir el objetivo de uso de esta política y un porcentaje que en la medida que se cumpla las maquinas se declararan en cumplimiento o no.
 
 Un vez llenados los campos click en **Next** 
 
 ![plus](img/insights-comp3.png)
 
 
-Teniendo en cuenta que las politicas son una serie de condiciones que se deben cumplir, aqui se puede observar la lista de aspectos que se van a validar con sus respectivas descripciones de cada uno, (un resumen rapido de lo que esta en la guia), seleccionelas todas o las que se ajuste a las necesidades de su organizacion
+Teniendo en cuenta que las políticas son una serie de condiciones que se deben cumplir, aquí se puede observar la lista de aspectos que se van a validar con sus respectivas descripciones de cada uno, (un resumen rapido de lo que esta en la guiá), selecciónelas todas o las que se ajuste a las necesidades de su organización
 
 Un vez seleccionadas las tareas click en **Next** 
 
 ![plus](img/insights-comp4.png)
 
-Defina mas maquinas a las cuales les va a realizar el chequeo y va a buscar que se cumplan las politicas
+Defina mas maquinas a las cuales les va a realizar el chequeo y va a buscar que se cumplan las políticas
 
 Un vez seleccionadas los hosts click en **Next** 
 
 ![plus](img/insights-comp5.png)
 
-Ahora podra observar un resumen de las politica SCAP que se va a crear, si todo esta correcto, haga click en **Finish**
+Ahora podrá observar un resumen de las política SCAP que se va a crear, si todo esta correcto, haga click en **Finish**
 
-Ahora para generar un primer reporte, ejecutando el comando ``insights-client --compliance`` en sus hosts puede ver el estado de su infraestructura RHEL en el menu de Red Hat Insights *Compliance service -> Reports* y profundizar en cada política para obtener informes y el estado por sistema. 
+Ahora para generar un primer reporte, ejecutando el comando ``insights-client --compliance`` en sus hosts puede ver el estado de su infraestructura RHEL en el menú de Red Hat Insights *Compliance service -> Reports* y profundizar en cada política para obtener informes y el estado por sistema. 
 
 >IMPORTANTE
 >
 >Ejecute siempre el comando ``insights-client --compliance`` para asegurarse de que está viendo los resultados actuales para su infraestructura RHEL.
 
-Esta tarea puede ser transladada a Ansible Tower e incluso ponerla en una agenda para que lo realice de forma periodica.
+Esta tarea puede ser trasladada a Ansible Tower e incluso ponerla en una agenda para que lo realice de forma periódica.
 
 En Ansible Tower -> Templates -> ![plus](img/green_plus.png) -> Job Template
 
@@ -455,7 +455,7 @@ En Ansible Tower -> Templates -> ![plus](img/green_plus.png) -> Job Template
 
 Haga clic en **Save** y luego click en **LAUNCH** en caso que desee ejecutar el playbook en este momento.
 
-En mi caso tengo un proyecto con playbooks miselaneos, y para no realizar la ejecucion de forma manual lo hice a traves de Ansible Tower con este playbook
+En mi caso tengo un proyecto con playbooks miselaneos, y para no realizar la ejecución de forma manual lo hice a través de Ansible Tower con este playbook
 
 ```yaml
 gen_scap_report.yml
@@ -481,11 +481,11 @@ gen_scap_report.yml
 
 ![plus](img/insights-comp7.png)
 
-Una vez finalizado el playbook o la ejecucion del comando `insights-client --compliance` en el portal de Red Hat Insights podremos visualizar en el menu de *Compliance*  -> *Reports* -> *View report* el resumen de los hosts seleccionados previamente
+Una vez finalizado el playbook o la ejecución del comando `insights-client --compliance` en el portal de Red Hat Insights podremos visualizar en el menú de *Compliance*  -> *Reports* -> *View report* el resumen de los hosts seleccionados previamente
 
 ![plus](img/insights-comp8.png)
 
-Si hacemos un zoom sobre los reportes, se podra encontrar la informacion de como afecta al sistema dicha regla, cual es su severidad y en la columna de Ansible indica si existe un playbook de remediacion, en este caso haremos uso de la integracion con Ansible Tower y seleccionamos todas las recomendaciones y damos click en el icono que tiene el logo de **Ansible** llamado Remediate ![remediate](img/remediate.png)
+Si hacemos un zoom sobre los reportes, se podrá encontrar la información de como afecta al sistema dicha regla, cual es su severidad y en la columna de Ansible indica si existe un playbook de remediacion, en este caso haremos uso de la integración con Ansible Tower y seleccionamos todas las recomendaciones y damos click en el icono que tiene el logo de **Ansible** llamado Remediate ![remediate](img/remediate.png)
 
 Una ventana emergente nos permite crear un nuevo playbook o adicionar las tareas a un playbook existente 
 
@@ -524,23 +524,23 @@ Haga clic en **Save** y luego click en **LAUNCH** en caso que desee ejecutar el 
 
 >IMPORTANTE
 >
-> Una vez finalice la ejecucion del playbook, ejecute sobre las maquinas afectadas el comando `insights-client --compliance`` para asegurarse de que va a ver los resultados mas recientes de su ejecucion, o hagalo a traves del Trabajo/Job Template creado previamente
+> Una vez finalice la ejecución del playbook, ejecute sobre las maquinas afectadas el comando `insights-client --compliance`` para asegurarse de que va a ver los resultados mas recientes de su ejecución, o hágalo a través del Trabajo/Job Template creado previamente
 
 
 ![plus](img/update-report.png) 
 
 
-Ahora dentro de de Red Hat Insights en el menu
+Ahora dentro de de Red Hat Insights en el menú
 
 Compliance -> Report -> View Report
 
 ![plus](img/insights-comp13.png)
 
-Ahora podemos observar que el score de cumplimiento aumento del 29% al 68% y que en este caso las 21 reglas que hacen falta para llegar al 100% (click en **Rules Failed**) son las reglas que no tienen un playbook aun para la remediacion o que posiblemente son reglas que requieren de datos adicionales realcionados con la infraestructura tales como:
+Ahora podemos observar que el score de cumplimiento aumento del 29% al 68% y que en este caso las 21 reglas que hacen falta para llegar al 100% (click en **Rules Failed**) son las reglas que no tienen un playbook aun para la remediacion o que posiblemente son reglas que requieren de datos adicionales relacionados con la infraestructura tales como:
 
-* La informacion de un servidor NTP (el cual necesita conocimiento de la infra)
-* Recomendaciones de rotacion del logs que va de acuerdo a las politicas de retencion internas
-* Usos de sistemas de autenticacion centralizados que dependen del proveedor con el que cuente cada compañia
+* La información de un servidor NTP (el cual necesita conocimiento de la infra)
+* Recomendaciones de rotación del logs que va de acuerdo a las políticas de retención internas
+* Usos de sistemas de autenticación centralizados que dependen del proveedor con el que cuente cada compañía
 
 ![plus](img/insights-comp14.png)
 
@@ -554,5 +554,4 @@ Para mayor información y/o actualización del procedimiento de integración,  p
  - [Setting up an Insights Project](https://docs.ansible.com/ansible-tower/latest/html/userguide/insights.html)
 
  - [Product Documentation for Red Hat Insights 2020-04](https://access.redhat.com/documentation/en-us/red_hat_insights/2020-04/)
-
 
