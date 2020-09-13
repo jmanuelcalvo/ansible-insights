@@ -245,7 +245,7 @@ Advisor -> Systems -> ``nombre del servidor``
 
 ![plus](img/insights-advisor1.png) 
 
-o generar un playbook que se encargue de automatizar estas tareas por nosotros, para ellos selecionamos todas las recomendaciones y damos click en el icono que tiene el logo de **Ansible** llamado Remediate ![remediate](img/remediate.png)
+o generar un playbook que se encargue de automatizar estas tareas por nosotros, para ellos seleccionamos todas las recomendaciones y damos click en el icono que tiene el logo de **Ansible** llamado Remediate ![remediate](img/remediate.png)
 
 Una ventana emergente nos permite crear un nuevo playbook o adicionar las tareas a un playbook existente 
 
@@ -263,11 +263,28 @@ Teniendo en cuenta Ansible Tower y Red Hat Insights se encuentran integradas, po
 
 Inventories -> Insights Inventory -> ![remediate](img/remediate1.png)
 
+Este icono nos lleva directamente a la creación de un trabajo/Job Template para aplicar los playbooks
+
+![plus](img/insights-advisor4.png) 
+
+Como se puede visualizar en lineas rojas, el playbook tiene el mismo nombre que se creo desde la interface de Red Hat Insights
+
+* Haga clic para seleccionar Habilitar **Enable Privilege Escalation**  ya que este playbook seguramente contiene actualización de paquetes y cambios en archivos de configuración que solo el usuario root puede hacer
+
+> NOTA:
+>
+> En caso que los playbooks no coincidan con los del Red Hat Insights, vaya al proyecto Proyecto Insights y haga click en el botón de actualizar
+
+Haga clic en **Save** y luego click en **LAUNCH** en caso que desee ejecutar el playbook en este momento.
+
+![plus](img/insights-advisor5.png) 
+
+El playbook se ejecuta sobre las maquinas afatadas y su ultima tarea es ejecutar nuevamente el comando ``insights-client`` el cual se encarga de sincronizarse de forma manual con el portal de insights para enviar las nuevos estados de la maquina.
 
 
+![plus](img/insights-advisor6.png) 
 
-
-
+Y teniendo en cuenta que se aplicaron todas las remediaciones a la maquina, dentro del servicio de **Advice** por ahora no se ve ningún sistema con algún consejo para aplicar
 
 
 Para mayor información y/o actualización del procedimiento puede encontrarlos en el sitio oficial de Ansible en:
