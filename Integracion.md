@@ -6,6 +6,8 @@ Integración de Red Hat Insights con Red Hat Ansible Tower
 - [Aplicar la remediation en sus maquinas a partir de Insights y Tower](#aplicar-la-remediation-en-sus-maquinas-a-partir-de-insights-y-tower)
   * [Red Hat Insights Advisor](#red-hat-insights-advisor)
   * [Red Hat Insights Vulnerability](#red-hat-insights-vulnerability)
+- [Información adicional](#Información-adicional)
+
 
 
 
@@ -367,6 +369,17 @@ Y teniendo en cuenta que se aplicaron todas las remediaciones a la maquina, dent
 
 y en la información del sistema se puede observar que no hay CVE's aplicables
 
+Tambien se puede visualizar desde la inteface web de Ansible Tower que no hay remediaciones disponibles.
+
+INVENTORIES -> Insights Inventory -> HOSTS -> node ->  INSIGHTS
+
+![plus](img/tower-insights.png) 
+
+
+## Información adicional
+
 Para mayor información y/o actualización del procedimiento de integración,  puede visitar en el sitio oficial de Ansible en:
 
-https://docs.ansible.com/ansible-tower/latest/html/userguide/insights.html
+ - [Setting up an Insights Project](https://docs.ansible.com/ansible-tower/latest/html/userguide/insights.html)
+
+
