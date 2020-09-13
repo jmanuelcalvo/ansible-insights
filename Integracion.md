@@ -5,7 +5,7 @@ Integración de Red Hat Insights con Red Hat Ansible Tower
 - [Revisar el portal de Red Hat Insights](#revisar-el-portal-de-red-hat-insights)
 - [Aplicar la remediation en sus maquinas a partir de Insights y Tower](#aplicar-la-remediation-en-sus-maquinas-a-partir-de-insights-y-tower)
   * [Red Hat Insights Advisor](#red-hat-insights-advisor)
-  * [Red Hat Insights vulnerability](#red-hat-insights-vulnerability)
+  * [Red Hat Insights Vulnerability](#red-hat-insights-vulnerability)
 
 
 
@@ -298,11 +298,10 @@ El playbook se ejecuta sobre las maquinas afatadas y su ultima tarea es ejecutar
 
 Y teniendo en cuenta que se aplicaron todas las remediaciones a la maquina, dentro del servicio de **Advice** por ahora no se ve ningún sistema con algún consejo para aplicar
 
-hola
-##########################
 
 
-### Red Hat Insights vulnerability 
+
+### Red Hat Insights Vulnerability 
 
 Desde la interface web https://cloud.redhat.com/insights/ ir a:
 
