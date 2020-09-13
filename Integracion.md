@@ -5,6 +5,10 @@ Integración de Red Hat Insights con Red Hat Ansible Tower
 - [Revisar el portal de Red Hat Insights](#revisar-el-portal-de-red-hat-insights)
 - [Aplicar la remediation en sus maquinas a partir de Insights y Tower](#aplicar-la-remediation-en-sus-maquinas-a-partir-de-insights-y-tower)
   * [Red Hat Insights Advisor](#red-hat-insights-advisor)
+  * [Red Hat Insights vulnerability](#red-hat-insights-vulnerability)
+
+
+
 
 El objetivo de este pagina es mostrar el paso a paso para realizar la integración de Red Hat Insights con Ansible Tower y asi garantizar que los sistemas operativos de linea base cuenten por lo menos con un aseguramiento mínimo sugerido por algunas de las normas internacionales.
 
@@ -294,7 +298,70 @@ El playbook se ejecuta sobre las maquinas afatadas y su ultima tarea es ejecutar
 
 Y teniendo en cuenta que se aplicaron todas las remediaciones a la maquina, dentro del servicio de **Advice** por ahora no se ve ningún sistema con algún consejo para aplicar
 
+hola
+##########################
 
-Para mayor información y/o actualización del procedimiento puede encontrarlos en el sitio oficial de Ansible en:
+
+### Red Hat Insights vulnerability 
+
+Desde la interface web https://cloud.redhat.com/insights/ ir a:
+
+Vulnerability -> CVEs
+
+![plus](img/insights-vulne.png) 
+
+Desde aquí podrá visualizar las vulnerabilidades que afectan a sus sistemas, asi como sus CVE's (Common Vulnerabilities and Exposures) o Vulnerabilidades y exposiciones comunes que afectan a sus sistemas con su respectivo ID y link donde se puede visualizar mayor informacion, su dato de publicacion, su nivel de severidad, su puntuacion, a cuantos de sus sistemas los afecta.
+
+También es posible encontrar un resumen con los servidores por los cuales son afectados estas vulnerabilidades
+
+Vulnerability -> Systems -> ``nombre del servidor``
+
+![plus](img/insights-vulne1.png) 
+
+Desde este panel podemos seleccionar una a una los CVE's que deseamos solucionar o seleccionarlos todos para posteriormente crear un playbook que se encargue de automatizar estas tareas por nosotros, para ellos seleccionamos todas las CVE's y damos click en el icono que tiene el logo de **Ansible** llamado Remediate ![remediate](img/remediate.png)
+
+Una ventana emergente nos permite crear un nuevo playbook o adicionar las tareas a un playbook existente 
+
+![plus](img/insights-vulne2.png) 
+
+Luego hacemos click en **Next** donde encontraremos información relacionada con las tareas que se van a automatizar y por ultimo click en **Create**
+
+Si ingresamos al menú Remediations al lado izquierdo podemos visualizar la tares
+
+https://cloud.redhat.com/insights/remediations
+
+![plus](img/insights-vulne3.png) 
+
+Teniendo en cuenta Ansible Tower y Red Hat Insights se encuentran integradas, podemos ejecutar estos Playbooks desde Ansible Tower ingresando a:
+
+Inventories -> Insights Inventory -> ![remediate](img/remediate1.png)
+
+Este icono nos lleva directamente a la creación de un trabajo/Job Template para aplicar los playbooks
+
+![plus](img/insights-vulne4.png) 
+
+Como se puede visualizar en lineas rojas, el playbook tiene el mismo nombre que se creo desde la interface de Red Hat Insights
+
+* Haga clic para seleccionar Habilitar **Enable Privilege Escalation**  ya que este playbook seguramente contiene actualización de paquetes y cambios en archivos de configuración que solo el usuario root puede hacer
+
+> NOTA:
+>
+> En caso que los playbooks no coincidan con los del Red Hat Insights, vaya al proyecto Proyecto Insights y haga click en el botón de actualizar
+
+Haga clic en **Save** y luego click en **LAUNCH** en caso que desee ejecutar el playbook en este momento.
+
+![plus](img/insights-vulne5.png) 
+
+El playbook se ejecuta sobre las maquinas afatadas y su ultima tarea es ejecutar nuevamente el comando ``insights-client`` el cual se encarga de sincronizarse de forma manual con el portal de insights para enviar las nuevos estados de la maquina.
+
+![plus](img/insights-vulne6.png) 
+
+Y teniendo en cuenta que se aplicaron todas las remediaciones a la maquina, dentro del servicio de **Vulnerabity** por ahora no se ve ningún sistema con algún consejo para aplicar
+
+![plus](img/insights-vulne7.png) 
+
+y en la información del sistema se puede observar que no hay CVE's aplicables
+
+Para mayor información y/o actualización del procedimiento de integración,  puede visitar en el sitio oficial de Ansible en:
 
 https://docs.ansible.com/ansible-tower/latest/html/userguide/insights.html
