@@ -1,3 +1,11 @@
+Integración de Red Hat Insights con Red Hat Ansible Tower
+
+- [Registrar las servidores a Red Hat Insights](#registrar-las-servidores-a-red-hat-insights)
+- [Registrar los nodos en Ansible Tower](#registrar-los-nodos-en-ansible-tower)
+- [Revisar el portal de Red Hat Insights](#revisar-el-portal-de-red-hat-insights)
+- [Aplicar la remediation en sus maquinas a partir de Insights y Tower](#aplicar-la-remediation-en-sus-maquinas-a-partir-de-insights-y-tower)
+  * [Red Hat Insights Advisor](#red-hat-insights-advisor)
+
 El objetivo de este pagina es mostrar el paso a paso para realizar la integración de Red Hat Insights con Ansible Tower y asi garantizar que los sistemas operativos de linea base cuenten por lo menos con un aseguramiento mínimo sugerido por algunas de las normas internacionales.
 
 Para ello es necesario realizar los siguientes pasos:
