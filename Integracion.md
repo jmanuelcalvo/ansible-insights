@@ -189,3 +189,87 @@ Haga clic en **Save** cuando termine
 >
 > Lo que hace es activar el botón **Insights**  del Host, que es necesario para corregir el inventario de Insights. De lo contrario, el parámetro system_id en el resultado de su trabajo de escaneo se establece en nulo y el botón Insights no aparecerá.
 
+6. Ahora click en el botón del cohete para ejecutar el playbook
+
+![Ref](img/tower-template2.png)
+
+y validar que la ejecución finalice de forma correcta
+
+![Ref](img/tower-template3.png)
+
+7. Si la integración funciono de forma correcta, puede ir al inventario de Insights previamente creado y dentro de los hosts debe visualizar una nueva pestaña **INSIGHTS**,  desde la interface de Ansible Tower ir a:
+
+Inventories -> Insights Inventory -> Pestaña HOSTS
+
+y ingresando al nodo que coincide con el previamente registrado deberá visualizar la pestaña **INSIGHTS** la cual contiene información relacionada con los diferentes problemas reportados en la maquinas
+
+![Ref](img/tower-host.png)
+
+
+## Revisar el portal de Red Hat Insights
+
+El botón **VIEW DATA IN INSIGHTS** nos llevara directamente al portal y a nuestras maquinas, donde a través de este portal predictivo podremos tener una panel que permite conocer el estado de salud de toda nuestra infraestructura
+
+![plus](img/view-insights.png) 
+
+Red Hat Insights permite validar y automatizar múltiples tareas relacionadas con los sistemas operativos y las aplicaciones allí instaladas, utilizando los servicios de:
+
+* Servicio de **Advisor** para la evaluación y seguimiento de problemas de configuración de RHEL.
+
+* Servicio de  **Vulnerability** para evaluar y monitorear el estado de las vulnerabilidades de seguridad en sus sistemas RHEL
+
+* Servicio de **Patch** que aprovecha la experiencia en automatización de gestión y software de Red Hat para permitir flujos de trabajo de parches consistentes para los sistemas RHEL en su nube híbrida abierta
+
+* Servicio de **Drift** o comparación de sistemas le permite comparar la configuración del sistema, de un sistema con otros sistemas en su inventario de servicios de administración en la nube.
+
+![plus](img/insights-panel.png) 
+
+
+y todo esto lo podrá visualizar también desde un tablero único/Dashboard lo que le permitirá contar con una visual completa de su infraestructura en tiempo real.
+
+## Aplicar la remediation en sus maquinas a partir de Insights y Tower
+
+### Red Hat Insights Advisor 
+
+Desde la interface web https://cloud.redhat.com/insights/ ir a:
+
+Advisor -> Recommendations
+
+![plus](img/insights-advisor.png) 
+
+Desde aquí podrá visualizar las recomendaciones de configuraciones, su nivel de riesgo, a cuantos de sus sistemas los afecta y si cuentan con un playbook para su remediacion/solución asi como también una breve descripción de la afectación
+
+También es posible encontrar el paso a paso de como solucionar o aplicar dicha recomendación ingresando a:
+
+Advisor -> Systems -> ``nombre del servidor``
+
+![plus](img/insights-advisor1.png) 
+
+o generar un playbook que se encargue de automatizar estas tareas por nosotros, para ellos selecionamos todas las recomendaciones y damos click en el icono que tiene el logo de **Ansible** llamado Remediate ![remediate](img/remediate.png)
+
+Una ventana emergente nos permite crear un nuevo playbook o adicionar las tareas a un playbook existente 
+
+![plus](img/insights-advisor2.png) 
+
+Luego hacemos click en **Next** donde encontraremos información relacionada con las tareas que se van a automatizar y por ultimo click en **Create**
+
+Si ingresamos al menú Remediations al lado izquierdo podemos visualizar la tares
+
+https://cloud.redhat.com/insights/remediations
+
+![plus](img/insights-advisor3.png) 
+
+Teniendo en cuenta Ansible Tower y Red Hat Insights se encuentran integradas, podemos ejecutar estos Playbooks desde Ansible Tower ingresando a:
+
+Inventories -> Insights Inventory -> ![remediate](img/remediate1.png)
+
+
+
+
+
+
+
+
+Para mayor información y/o actualización del procedimiento puede encontrarlos en el sitio oficial de Ansible en:
+
+https://docs.ansible.com/ansible-tower/latest/html/userguide/insights.html
