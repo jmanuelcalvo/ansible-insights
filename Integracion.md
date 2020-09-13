@@ -375,6 +375,81 @@ INVENTORIES -> Insights Inventory -> HOSTS -> node ->  INSIGHTS
 
 ![plus](img/tower-insights.png) 
 
+### Red Hat Insights Compliance 
+
+Desde la interface web https://cloud.redhat.com/insights/ ir a:
+
+Compliance -> Report
+
+![plus](img/insights-comp.png) 
+
+El servicio de Cumplimiento le permite evaluar y monitorear el cumplimiento de sus sistemas RHEL con las políticas de seguridad de SCAP.
+
+> El Security Content Automation Protocol, también conocido por sus siglas SCAP o S'CAP, es conjunto de especificaciones del NIST para expresar (formatos y nomenclaturas) y manipular información relacionada con la seguridad sobre fallos y configuraciones, de una forma estandarizada.
+
+Desde aquí  podra crear, configurar y administrar sus políticas de seguridad de SCAP directamente dentro del servicio de compliance. Con las funciones de filtrado y adición de contexto integradas en el servicio, puede identificar y administrar fácilmente los problemas de cumplimiento minimas de sus maquinas.
+
+El primer paso que debemos realizar es identificar la politica de seguridad que se va a utilizar y crear una nueva politica basada en la misma, para ello damos click en el boton **Create new policy**:
+
+![plus](img/insights-comp1.png) 
+
+Seleccionamos la version del sistema operativo para los cuales se va crear la politica, estos pueden ser RHEL6, RHEL7 o RHEL8 y se desplegara una lista de las politias que podemos aplicar al sistema operativo:
+
+* [Health Insurance Portability and Accountability Act (HIPAA)](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-hipaa.html)
+* [OSPP - Protection Profile for General Purpose Operating Systems v4.2.1](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-ospp.html)
+* [NIST National Checklist Program Security Guide](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-70r4.pdf)
+* DRAFT - ANSSI DAT-NT28 (minimal)
+* DRAFT - ANSSI DAT-NT28 (enhanced)
+* DRAFT - ANSSI DAT-NT28 (intermediary)
+* [PCI-DSS v3.2.1 Control Baseline for Red Hat Enterprise Linux 7](https://es.pcisecuritystandards.org/_onelink_/pcisecurity/en2es/minisite/en/docs/PCI_DSS_v3.pdf)
+* DRAFT - ANSSI DAT-NT28 (high)
+* [Standard System Security Profile for Red Hat Enterprise Linux 7](https://static.open-scap.org/ssg-guides/ssg-centos7-guide-standard.html)
+* [DRAFT] DISA STIG for Red Hat Enterprise Linux Virtualization Host (RHELH)
+* [VPP - Protection Profile for Virtualization v. 1.0 for Red Hat Enterprise Linux Hypervisor (RHELH)](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-rhelh-vpp.html)
+* [DISA STIG for Red Hat Enterprise Linux 7](http://static.open-scap.org/ssg-guides/ssg-rhel7-guide-stig.html)
+* [Criminal Justice Information Services (CJIS) Security Policy](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-cjis.html)
+* Unclassified Information in Non-federal Information Systems and Organizations (NIST 800-171)
+* [C2S for Red Hat Enterprise Linux 7](http://www.itsecure.hu/library/image/CIS_Red_Hat_Enterprise_Linux_7_Benchmark_v2.1.1.pdf)
+* [Red Hat Corporate Profile for Certified Cloud Providers (RH CCP)](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-rht-ccp.html)
+* [Australian Cyber Security Centre (ACSC) Essential Eight](https://static.open-scap.org/ssg-guides/ssg-rhel8-guide-index.html)
+
+Un vez seleccionada la politica click en **Next** 
+
+![plus](img/insights-comp2.png) 
+
+Aqui se puede adicionar comentarios respecto a la politica que se va a aplicar, definir el objetivo de uso de esta politica y un porcentaje que en la medida que se cumpla las maquinas se declararan en cumplimiento o no.
+
+Un vez llenados los campos click en **Next** 
+
+![plus](img/insights-comp3.png)
+
+
+Teniendo en cuenta que las politicas son una serie de condiciones que se deben cumplir, aqui se puede observar la lista de aspectos que se van a validar con sus respectivas descripciones de cada uno, (un resumen rapido de lo que esta en la guia), seleccionelas todas o las que se ajuste a las necesidades de su organizacion
+
+Un vez seleccionadas las tareas click en **Next** 
+
+![plus](img/insights-comp4.png)
+
+Defina mas maquinas a las cuales les va a realizar el chequeo y va a buscar que se cumplan las politicas
+
+Un vez seleccionadas los hosts click en **Next** 
+
+![plus](img/insights-comp5.png)
+
+Ahora podra observar un resumen de las politica SCAP que se va a crear, si todo esta correcto, haga click en **Finish**
+
+Ahora para generar un primer reporte, ejecutando el comando ``insights-client --compliance`` en sus hosts puede ver el estado de su infraestructura RHEL en el menu de Red Hat Insights *Compliance service -> Reports* y profundizar en cada política para obtener informes y el estado por sistema. 
+
+>IMPORTANTE
+>
+>Ejecute siempre el comando ``insights-client --compliance`` para asegurarse de que está viendo los resultados actuales para su infraestructura RHEL.
+
+Esta tarea puede ser transladada a Ansible Tower e incluso ponerla en una agenda para que lo realice de forma periodica.
+
+En Ansible Tower -> Templates -> 
+Templates -> ![plus](img/green_plus.png) -> Job Template
+
+
 
 ## Información adicional
 
