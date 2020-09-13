@@ -6,6 +6,8 @@ Integración de Red Hat Insights con Red Hat Ansible Tower
 - [Aplicar la remediation en sus maquinas a partir de Insights y Tower](#aplicar-la-remediation-en-sus-maquinas-a-partir-de-insights-y-tower)
   * [Red Hat Insights Advisor](#red-hat-insights-advisor)
   * [Red Hat Insights Vulnerability](#red-hat-insights-vulnerability)
+  * [Red Hat Insights Compliance](#Red-Hat-Insights-Compliance) 
+
 - [Información adicional](#Información-adicional)
 
 
@@ -395,6 +397,7 @@ El primer paso que debemos realizar es identificar la politica de seguridad que 
 
 Seleccionamos la version del sistema operativo para los cuales se va crear la politica, estos pueden ser RHEL6, RHEL7 o RHEL8 y se desplegara una lista de las politias que podemos aplicar al sistema operativo:
 
+
 * [Health Insurance Portability and Accountability Act (HIPAA)](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-hipaa.html)
 * [OSPP - Protection Profile for General Purpose Operating Systems v4.2.1](https://static.open-scap.org/ssg-guides/ssg-rhel7-guide-ospp.html)
 * [NIST National Checklist Program Security Guide](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-70r4.pdf)
@@ -446,8 +449,101 @@ Ahora para generar un primer reporte, ejecutando el comando ``insights-client --
 
 Esta tarea puede ser transladada a Ansible Tower e incluso ponerla en una agenda para que lo realice de forma periodica.
 
-En Ansible Tower -> Templates -> 
-Templates -> ![plus](img/green_plus.png) -> Job Template
+En Ansible Tower -> Templates -> ![plus](img/green_plus.png) -> Job Template
+
+![plus](img/insights-comp6.png)
+
+Haga clic en **Save** y luego click en **LAUNCH** en caso que desee ejecutar el playbook en este momento.
+
+En mi caso tengo un proyecto con playbooks miselaneos, y para no realizar la ejecucion de forma manual lo hice a traves de Ansible Tower con este playbook
+
+```yaml
+gen_scap_report.yml
+---
+- name: Generar/Actualizar reporte de Scap en Red Hat Insights
+  hosts: all
+  gather_facts: no
+  tasks:
+
+  - name: Validar que los paquete necesarios se encuentren instalados
+    yum:
+      name: scap-security-guide
+      state: latest
+
+  - name: Ejecutar el comando de generacion / acutualizacion de reportes
+    shell: insights-client --compliance
+    register: salida
+
+  - name: Debug de salida
+    debug:
+      var: salida
+```      
+
+![plus](img/insights-comp7.png)
+
+Una vez finalizado el playbook o la ejecucion del comando `insights-client --compliance` en el portal de Red Hat Insights podremos visualizar en el menu de *Compliance*  -> *Reports* -> *View report* el resumen de los hosts seleccionados previamente
+
+![plus](img/insights-comp8.png)
+
+Si hacemos un zoom sobre los reportes, se podra encontrar la informacion de como afecta al sistema dicha regla, cual es su severidad y en la columna de Ansible indica si existe un playbook de remediacion, en este caso haremos uso de la integracion con Ansible Tower y seleccionamos todas las recomendaciones y damos click en el icono que tiene el logo de **Ansible** llamado Remediate ![remediate](img/remediate.png)
+
+Una ventana emergente nos permite crear un nuevo playbook o adicionar las tareas a un playbook existente 
+
+![plus](img/insights-comp9.png)
+
+Luego hacemos click en **Next** donde encontraremos información relacionada con todas las tareas que se van a automatizar y por ultimo click en **Create**
+
+Si ingresamos al menú Remediations al lado izquierdo podemos visualizar la tares
+
+https://cloud.redhat.com/insights/remediations
+
+![plus](img/insights-comp10.png)
+
+Teniendo en cuenta Ansible Tower y Red Hat Insights se encuentran integradas, podemos ejecutar estos Playbooks desde Ansible Tower ingresando a:
+
+Inventories -> Insights Inventory -> ![remediate](img/remediate1.png)
+
+Este icono nos lleva directamente a la creación de un trabajo/Job Template para aplicar los playbooks
+
+![plus](img/insights-comp11.png)
+
+Como se puede visualizar en lineas rojas, el playbook tiene el mismo nombre que se creo desde la interface de Red Hat Insights
+
+* Haga clic para seleccionar Habilitar **Enable Privilege Escalation**  ya que este playbook seguramente contiene actualización de paquetes y cambios en archivos de configuración que solo el usuario root puede hacer
+
+> NOTA:
+>
+> En caso que los playbooks no coincidan con los del Red Hat Insights, vaya al proyecto Proyecto Insights y haga click en el botón de actualizar
+![plus](img/update-project.png) 
+
+
+Haga clic en **Save** y luego click en **LAUNCH** en caso que desee ejecutar el playbook en este momento.
+
+![plus](img/insights-comp12.png)
+
+
+>IMPORTANTE
+>
+> Una vez finalice la ejecucion del playbook, ejecute sobre las maquinas afectadas el comando `insights-client --compliance`` para asegurarse de que va a ver los resultados mas recientes de su ejecucion, o hagalo a traves del Trabajo/Job Template creado previamente
+
+
+![plus](img/update-report.png) 
+
+
+Ahora dentro de de Red Hat Insights en el menu
+
+Compliance -> Report -> View Report
+
+![plus](img/insights-comp13.png)
+
+Ahora podemos observar que el score de cumplimiento aumento del 29% al 68% y que en este caso las 21 reglas que hacen falta para llegar al 100% (click en **Rules Failed**) son las reglas que no tienen un playbook aun para la remediacion o que posiblemente son reglas que requieren de datos adicionales realcionados con la infraestructura tales como:
+
+* La informacion de un servidor NTP (el cual necesita conocimiento de la infra)
+* Recomendaciones de rotacion del logs que va de acuerdo a las politicas de retencion internas
+* Usos de sistemas de autenticacion centralizados que dependen del proveedor con el que cuente cada compañia
+
+![plus](img/insights-comp14.png)
+
 
 
 
@@ -456,5 +552,7 @@ Templates -> ![plus](img/green_plus.png) -> Job Template
 Para mayor información y/o actualización del procedimiento de integración,  puede visitar en el sitio oficial de Ansible en:
 
  - [Setting up an Insights Project](https://docs.ansible.com/ansible-tower/latest/html/userguide/insights.html)
+
+ - [Product Documentation for Red Hat Insights 2020-04](https://access.redhat.com/documentation/en-us/red_hat_insights/2020-04/)
 
 
