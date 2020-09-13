@@ -1,0 +1,19 @@
+---
+- name: Generar/Actualizar reporte de Scap en Red Hat Insights
+  hosts: all
+  gather_facts: no
+  tasks:
+
+  - name: Validar que los paquete necesarios se encuentren instalados
+    yum:
+      name: scap-security-guide
+      state: latest
+
+  - name: Ejecutar el comando de generacion / acutualizacion de reportes
+    shell: insights-client --compliance
+    register: salida
+
+  - name: Debug de salida
+    debug:
+      var: salida
+
