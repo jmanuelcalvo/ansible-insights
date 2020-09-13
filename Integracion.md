@@ -10,9 +10,15 @@ Integración de Red Hat Insights con Red Hat Ansible Tower
 
 
 
-El objetivo de este pagina es mostrar el paso a paso para realizar la integración de Red Hat Insights con Ansible Tower y asi garantizar que los sistemas operativos de linea base cuenten por lo menos con un aseguramiento mínimo sugerido por algunas de las normas internacionales.
+El objetivo de este documento es mostrar el paso a paso para realizar la integración de Red Hat Insights con Ansible Tower y asi garantizar la automatización de muchas tareas relacionadas con la operación que le harán la vida mas fácil a los administradores y también poder contar por lo menos con un aseguramiento mínimo sugerido por algunas de las normas internacionales.
 
-Para ello es necesario realizar los siguientes pasos:
+Para este ambiente se contaba previamente con:
+* Un Red Hat Ansible Tower recién instalado (all in one)
+* Una maquina virtual que funciona como cliente con RHEL 7.8
+* Una suscripción activa de Red Hat
+* Un playbook de des aseguramiento de la maquina (en pro de emular un sistema operativo con problemas) ubicado en este repo en /playbooks/insecure-vm.yml
+
+Vamos a iniciar realizando los siguientes pasos:
 
 ## Registrar las servidores a Red Hat Insights
 
