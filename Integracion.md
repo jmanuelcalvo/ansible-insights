@@ -555,3 +555,7 @@ Para mayor información y/o actualización del procedimiento de integración,  p
 
  - [Product Documentation for Red Hat Insights 2020-04](https://access.redhat.com/documentation/en-us/red_hat_insights/2020-04/)
 
+
+
+--
+![Red Hat Ansible Automation](img/rh-ansible-automation-platform.png)
