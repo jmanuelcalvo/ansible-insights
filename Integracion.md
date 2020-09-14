@@ -1,5 +1,10 @@
 # Integración de Red Hat Insights con Red Hat Ansible Tower
 
+
+![Ref](img/tower-insights1.png)
+
+
+
 - [Registrar las servidores a Red Hat Insights](#registrar-las-servidores-a-red-hat-insights)
 - [Registrar los nodos en Ansible Tower](#registrar-los-nodos-en-ansible-tower)
 - [Revisar el portal de Red Hat Insights](#revisar-el-portal-de-red-hat-insights)
