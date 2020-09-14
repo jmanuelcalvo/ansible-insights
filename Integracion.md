@@ -1,7 +1,12 @@
 # Integración de Red Hat Insights con Red Hat Ansible Tower
 
 
+
+
+
 ![Ref](img/tower-insights1.png)
+
+
 
 
 
