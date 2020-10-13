@@ -105,6 +105,7 @@ https://cloud.redhat.com/insights/inventory/1616ef27-d477-40ae-9c4e-xxxxx
 ---
 - hosts: all
   gather_facts: yes
+  become: true
   tasks:
   - name: Registar las maquinas al pool XXXXX SKU
     redhat_subscription:
