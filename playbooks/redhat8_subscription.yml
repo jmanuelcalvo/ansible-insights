@@ -1,7 +1,7 @@
 ---
 - hosts: all
   collections: 
-    - community.general.redhat_subscription
+    - community.general
   gather_facts: yes
   become: true
   tasks:
