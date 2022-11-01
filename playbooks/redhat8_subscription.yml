@@ -1,0 +1,25 @@
+---
+- hosts: all
+  gather_facts: yes
+  become: true
+  tasks:
+  - name: Registar las maquinas al pool XXXXX SKU
+    redhat_subscription:
+      state: present
+      username: jcalvo@redhat.com
+      password: "{{ passwd }}"
+      auto_attach: true
+
+
+  - name: Instalar paquete de Red Hat Insights
+    yum:
+      name: insights-client
+      state: latest
+
+  - name: Registrar maquina en insights
+    shell: insights-client --register
+    register: salida
+
+  - name: Mensaje de salida registro
+    debug:
+      var: salida
