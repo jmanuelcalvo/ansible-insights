@@ -1,0 +1,46 @@
+---
+- name: Des asegurar un sistema operativo para pruebas de compliance
+  hosts: all
+  gather_facts: yes
+  tasks:
+
+  - name: Disable auditd Service
+    command: service auditd stop
+
+  - name: Prevent Login to Accounts With Empty Password
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^#PermitEmptyPasswords'
+      line: PermitEmptyPasswords yes
+
+  - name: Reiniciar sshd
+    service:
+      name: sshd
+      state: restarted
+
+  - name: Cambio de permisos
+    command: chown nobody /etc/group
+
+  - name: Cambio de permisos
+    command: chown nobody /boot/grub2/grub.cfg
+
+  - name: Instalar telnet service
+    yum:
+      name: telnet-server
+      state: latest
+
+  - name: Enable telnet server
+    service:
+      name: telnet.socket
+      state: started
+      enabled: yes
+
+  - name: Deshabilitar el servicio de chrony
+    service:
+      name: chronyd
+      state: stopped
+
+  - name: Deshabilitar el servicio de syslogd
+    service:
+      name: syslog
+      state: stopped
