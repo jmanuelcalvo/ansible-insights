@@ -44,3 +44,8 @@
     service:
       name: syslog
       state: stopped
+      
+      
+  - name: Ejecutar Insight client
+    shell: insights-client
+    register: salida 
