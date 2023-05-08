@@ -8,7 +8,7 @@
   - name: Registar las maquinas al pool XXXXX SKU
     redhat_subscription:
       state: present
-      username: jcalvo@redhat.com
+      username: "{{ rhuser }}"
       password: "{{ passwd }}"
       auto_attach: true
 
