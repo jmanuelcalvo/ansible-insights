@@ -11,6 +11,7 @@
       username: "{{ rhuser }}"
       password: "{{ passwd }}"
       auto_attach: true
+      force_register: true
 
 
   - name: Instalar paquete de Red Hat Insights
