@@ -42,7 +42,7 @@
 
   - name: Deshabilitar el servicio de syslogd
     service:
-      name: syslog
+      name: rsyslog
       state: stopped
       
       
